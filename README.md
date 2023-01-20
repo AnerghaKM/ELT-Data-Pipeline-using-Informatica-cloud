@@ -1,4 +1,4 @@
-# ETL-Data-Pipeline-using-Informatica-cloud
+# ELT-Data-Pipeline-using-Informatica-cloud
 
 # Data pipeline implementation using Informatica cloud
 
