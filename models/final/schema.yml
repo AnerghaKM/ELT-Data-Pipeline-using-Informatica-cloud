@@ -1,0 +1,8 @@
+version: 2
+
+models:
+  - name: customer_order
+    columns:
+      - name: customer_unique_id
+        tests:
+          - not_null
