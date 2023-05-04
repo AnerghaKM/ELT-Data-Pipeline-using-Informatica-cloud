@@ -1,0 +1,37 @@
+Data pipeline implementation using Informatica cloud
+
+Purpose is to collect data from 2 sources , 
+1- s3 , customer data added by data vendor.
+2-postgresql,order data details pushed by application.
+
+Later perform data transformation and load data to destination(postgresql) and connect power BI and create dashboards
+
+components used
+
+s3- source
+postgresql  - source & destination
+powerbi - viz
+informatica - get data from source to destination
+datawarehouse - postgresql
+dbt - data transformtion
+
+postgres created in aws with help of aws rds
+
+1)upload data to s3
+2)Set up postgres SQL using AWS RDS(RDS Managed Relational Database Service)
+3)Set up postgres in local system to connect to aws rds postgres server
+4)create schema - app , table - order
+5)Import data to this order table 
+6)From Informatica,from administration part, create connections to aws s3 using access key and secret key from aws and then test connection
+7)From Informatica,from administration part,add postgres connection using rds db created details in aws and then test connection
+8)create a schema in postgres for s3 data, schema -vendordata , table - customer
+9)EL-Extract and load s3 data to vendordata schema in postgres data warehouse, using data integration part in Informatica.Create new project and do mapping from source(aws s3) to destination(aws rds postgres).Run mapping and we can see data loaded to vendordata.customer from s3.
+10)Create schema in warehouse for order data , schema -operation, table - order
+11)EL-Extract and load app data from postgres to aws rds warehouse using data integration part in Informatica.Create new project and do mapping from source(postgres order schema-app table-order) to destination(aws rds postgres).Run mapping and we can see data loaded to operations.order from app.order
+12)Do transformation in DBT, create new project, choose postgres as warehouse. Configure connection using aws rds db details and test connection. Can edit schema name in this part, if needed, since dbt will create models under this schema name.
+13)DBT will create new schema in aws rds warehouse.
+14)Connect to powerBI for visualization.
+
+
+
+
